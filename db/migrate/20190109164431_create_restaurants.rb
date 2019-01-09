@@ -5,7 +5,7 @@ class CreateRestaurants < ActiveRecord::Migration[5.1]
       t.text :description
       t.references :user, foreign_key: true
       t.string :address
-      t.number :telephone
+      t.numeric :telephone
 
       t.timestamps
     end
