@@ -1,0 +1,7 @@
+<nav>
+  <% if logged? %>
+    <%= link_to 'Log out', session_destroy_path, method: :delete %>
+  <% else %>
+    <%= link_to 'Log in', new_session_path %>
+  <% end %>
+</nav>
