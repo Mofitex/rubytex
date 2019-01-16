@@ -10,7 +10,10 @@
       </ul>
     </div>
   <% end %>
-
+  <div class="field">
+    <%= form.label :username %>
+    <%= form.text_field :username, id: :user_username %>
+  </div>
   <div class="field">
     <%= form.label :email %>
     <%= form.text_field :email, id: :user_email %>
@@ -18,18 +21,11 @@
 
   <div class="field">
     <%= form.label :password %>
-    <%= form.text_field :password, id: :user_password %>
+    <%= form.text_field :password, id: :user_password, type:"password" %>
   </div>
 
-  <div class="field">
-    <%= form.label :username %>
-    <%= form.text_field :username, id: :user_username %>
-  </div>
 
-  <div class="field">
-    <%= form.label :admin %>
-    <%= form.check_box :admin, id: :user_admin %>
-  </div>
+
 
   <div class="actions">
     <%= form.submit %>
