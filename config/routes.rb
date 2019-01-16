@@ -1,7 +1,14 @@
 Rails.application.routes.draw do
-  resources :sessions
+  root 'users#index'
+  resources :sessions, only: :new
+  post 'session/create' => 'sessions#create', as: :session_create
+  delete 'session/destroy' => 'sessions#destroy', as: :session_destroy
   resources :comments
   resources :restaurants
-  resources :users
+  resources :users, except: :show do
+    #get 'update' => 'users#update'
+    #get 'destroy' => 'users#destroy'
+    get 'delete' => 'users#delete'
+  end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
