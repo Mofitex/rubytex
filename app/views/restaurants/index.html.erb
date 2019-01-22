@@ -1,7 +1,9 @@
 <p id="notice"><%= notice %></p>
 
 <h1>Restaurants</h1>
-
+<form>
+<input name="buscar" <%= @buscar %>/><button type="submit">buscar</button>
+</form>
 <table>
   <thead>
     <tr>
@@ -15,16 +17,18 @@
   </thead>
 
   <tbody>
+
     <% @restaurants.each do |restaurant| %>
       <tr>
         <td><%= restaurant.title %></td>
         <td><%= restaurant.description %></td>
-        <td><%= restaurant.user %></td>
+        <td><%= restaurant.user.username %></td>
         <td><%= restaurant.address %></td>
         <td><%= restaurant.telephone %></td>
         <td><%= link_to 'Show', restaurant %></td>
         <td><%= link_to 'Edit', edit_restaurant_path(restaurant) %></td>
         <td><%= link_to 'Destroy', restaurant, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Comments', comment_review_url(restaurant.id) %> </td>
       </tr>
     <% end %>
   </tbody>

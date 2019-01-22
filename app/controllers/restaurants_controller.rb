@@ -4,7 +4,16 @@ class RestaurantsController < ApplicationController
   # GET /restaurants
   # GET /restaurants.json
   def index
-    @restaurants = Restaurant.all
+    @buscar = params[:buscar]
+    if @buscar==""
+      @restaurants = Restaurant.all
+    elsif @buscar
+      @restaurants = Restaurant.where(:title => @buscar)
+      flash[:success] = "asdf"
+    else
+      @restaurants = Restaurant.all
+      flash[:success] = "fdsa"
+    end
   end
 
   # GET /restaurants/1

@@ -1,11 +1,14 @@
 Rails.application.routes.draw do
-  root 'users#index'
+  root 'restaurants#index'
   get 'login' => 'sessions#new'
   get 'register' => 'users#new'
   resources :sessions, only: :new
   post 'session/create' => 'sessions#create', as: :session_create
   delete 'session/destroy' => 'sessions#destroy', as: :session_destroy
-  resources :comments
+  resources :comments do
+    get '/review' => 'comments#restaurant_comments'
+  end
+
   resources :restaurants
   resources :users, except: :show do
     #get 'update' => 'users#update'

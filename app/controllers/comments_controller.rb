@@ -60,7 +60,10 @@ class CommentsController < ApplicationController
       format.json { head :no_content }
     end
   end
-
+  def restaurant_comments
+    restaurant = Restaurant.find(params[:comment_id])
+    @comments = restaurant.comments
+  end
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_comment
