@@ -25,11 +25,14 @@ class UsersController < ApplicationController
   # POST /users.json
   def create
     @user = User.new(user_params)
-
+    if @user.admin
+    else
+      @user.admin = false
+    end
     respond_to do |format|
       if @user.save
-        format.html { redirect_to @user, notice: 'User was successfully created.' }
-        format.json { render :show, status: :created, location: @user }
+        format.html { redirect_to restaurants_path, notice: 'User was successfully created.' }
+        format.json { render :profile, status: :created, location: @user }
       else
         format.html { render :new }
         format.json { render json: @user.errors, status: :unprocessable_entity }
@@ -60,7 +63,9 @@ class UsersController < ApplicationController
       format.json { head :no_content }
     end
   end
-
+  def profile
+    @user = User.find(params[:user_id])
+  end
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_user

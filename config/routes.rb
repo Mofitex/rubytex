@@ -14,6 +14,7 @@ Rails.application.routes.draw do
     #get 'update' => 'users#update'
     #get 'destroy' => 'users#destroy'
     get 'delete' => 'users#delete'
+    get 'profile' => 'users#profile'
   end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
