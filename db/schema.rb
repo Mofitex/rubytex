@@ -28,10 +28,12 @@ ActiveRecord::Schema.define(version: 20190109173842) do
     t.string "title"
     t.text "description"
     t.integer "user_id"
+    t.integer "comment_id"
     t.string "address"
     t.decimal "telephone"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["comment_id"], name: "index_restaurants_on_comment_id"
     t.index ["user_id"], name: "index_restaurants_on_user_id"
   end
 
