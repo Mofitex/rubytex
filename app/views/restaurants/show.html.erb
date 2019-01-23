@@ -12,7 +12,7 @@
 
 <p>
   <strong>User:</strong>
-  <%= @restaurant.user %>
+  <%= @restaurant.user.username %>
 </p>
 
 <p>
@@ -24,6 +24,10 @@
   <strong>Telephone:</strong>
   <%= @restaurant.telephone %>
 </p>
-
-<%= link_to 'Edit', edit_restaurant_path(@restaurant) %> |
-<%= link_to 'Back', restaurants_path %>
+<% if logged? %>
+  <%= link_to 'New Comment', new_comment_path %> |
+  <% if current_user.id==@restaurant.user.id %>
+      <%= link_to 'Edit', edit_restaurant_path(@restaurant) %> |
+  <% end %>
+<% end %>
+  <%= link_to 'Back', restaurants_path %>

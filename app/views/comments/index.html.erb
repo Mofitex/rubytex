@@ -9,6 +9,7 @@
       <th>Text</th>
       <th>Score</th>
       <th>User</th>
+      <th>Restaurant</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -19,15 +20,18 @@
         <td><%= comment.title %></td>
         <td><%= comment.text %></td>
         <td><%= comment.score %></td>
-        <td><%= comment.user %></td>
+        <td><%= comment.user.username %></td>
+        <td><%= comment.restaurant.title %></td>
         <td><%= link_to 'Show', comment %></td>
+        <% if logged? %>
+          <% if current_user.admin==true %>
         <td><%= link_to 'Edit', edit_comment_path(comment) %></td>
         <td><%= link_to 'Destroy', comment, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end %>
+        <% end %>
       </tr>
     <% end %>
   </tbody>
 </table>
 
 <br>
-
-<%= link_to 'New Comment', new_comment_path %>

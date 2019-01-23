@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
-  before_action :check_login, only: [:edit, :update, :destroy]
+  before_action :check_login, only: [:index, :show, :edit, :update, :destroy, :profile]
+  before_action :check_admin, only: [:index, :show]
   # GET /users
   # GET /users.json
   def index
@@ -19,6 +20,10 @@ class UsersController < ApplicationController
 
   # GET /users/1/edit
   def edit
+    unless current_user.id==@user.id || current_user.admin==true
+      flash[:error] = "You need to be admin to access this route"
+      redirect_to root_path
+    end
   end
 
   # POST /users
@@ -57,14 +62,24 @@ class UsersController < ApplicationController
   # DELETE /users/1
   # DELETE /users/1.json
   def destroy
-    @user.destroy
-    respond_to do |format|
-      format.html { redirect_to users_url, notice: 'User was successfully destroyed.' }
-      format.json { head :no_content }
+    unless current_user.id==@user.id || current_user.admin==true
+      flash[:error] = "You need to be admin to access this route"
+      redirect_to root_path
+    else
+      @user.destroy
+      respond_to do |format|
+        format.html { redirect_to users_url, notice: 'User was successfully destroyed.' }
+        format.json { head :no_content }
+      end
     end
   end
+
   def profile
     @user = User.find(params[:user_id])
+    unless current_user.id==@user.id || current_user.admin==true
+      flash[:error] = "You need to be admin to access this route"
+      redirect_to root_path
+    end
   end
   private
     # Use callbacks to share common setup or constraints between actions.

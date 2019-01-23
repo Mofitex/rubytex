@@ -1,6 +1,6 @@
 class RestaurantsController < ApplicationController
   before_action :set_restaurant, only: [:show, :edit, :update, :destroy]
-
+  before_action :check_login, only: [:new, :edit, :update, :destroy, :user_restaurants]
   # GET /restaurants
   # GET /restaurants.json
   def index
@@ -8,11 +8,9 @@ class RestaurantsController < ApplicationController
     if @buscar==""
       @restaurants = Restaurant.all
     elsif @buscar
-      @restaurants = Restaurant.where(:title => @buscar)
-      flash[:success] = "asdf"
+      @restaurants = Restaurant.where("title LIKE ?", "%#{@buscar}%")
     else
       @restaurants = Restaurant.all
-      flash[:success] = "fdsa"
     end
   end
 
@@ -69,7 +67,9 @@ class RestaurantsController < ApplicationController
       format.json { head :no_content }
     end
   end
-
+  def user_restaurants
+    @restaurants = Restaurant.where(user: (User.find_by id: current_user.id))
+  end
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_restaurant

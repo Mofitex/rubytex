@@ -1,6 +1,6 @@
 class CommentsController < ApplicationController
   before_action :set_comment, only: [:show, :edit, :update, :destroy]
-
+  before_action :check_login, only: [:edit, :update, :destroy]
   # GET /comments
   # GET /comments.json
   def index
@@ -63,6 +63,10 @@ class CommentsController < ApplicationController
   def restaurant_comments
     restaurant = Restaurant.find(params[:comment_id])
     @comments = restaurant.comments
+  end
+  def user_comments
+    @user = User.find(current_user.id)
+    @comments = @user.comments
   end
   private
     # Use callbacks to share common setup or constraints between actions.

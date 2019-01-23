@@ -1,0 +1,15 @@
+<br>
+<br>
+<footer>
+  <%= link_to 'All Comments', comments_path %>  |
+  <%= link_to 'All Restaurants', restaurants_path %>
+  <% if logged? %>
+ | <%= link_to 'Your Restaurants', owner_restaurants_path %> |
+   <%= link_to 'Your Comments', owncomment_comments_path %>
+   <% if current_user.admin==true %>
+      <p><b>Sudo on</b></p>
+      <%= link_to 'Users list', users_path %>
+   <% end %>
+  <% end %>
+
+</footer>

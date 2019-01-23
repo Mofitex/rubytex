@@ -22,6 +22,6 @@ class SessionsController < ApplicationController
     redirect_to root_path
   end
   def print_user
-    flash[:success] = "#{current_user.username}'s session closed"
+    flash[:success] = "#{current_user.username}'s logged out"
   end
   end

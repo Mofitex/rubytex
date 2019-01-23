@@ -1,9 +1,9 @@
 <nav>
   <% if logged? %>
-    <%= link_to 'Log out', session_destroy_path, method: :delete %>
+    <%= link_to 'Log out', session_destroy_path, method: :delete %>  |
     <%= link_to 'Profile', user_profile_url(current_user.id) %>
   <% else %>
-    <%= link_to 'Log in', login_path %>
+    <%= link_to 'Log in', login_path %>  |
     <%= link_to 'Register', register_path %>
   <% end %>
 </nav>

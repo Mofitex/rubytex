@@ -26,8 +26,12 @@
         <td><%= restaurant.address %></td>
         <td><%= restaurant.telephone %></td>
         <td><%= link_to 'Show', restaurant %></td>
-        <td><%= link_to 'Edit', edit_restaurant_path(restaurant) %></td>
-        <td><%= link_to 'Destroy', restaurant, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% if logged? %>
+          <% if current_user.admin==true %>
+            <td><%= link_to 'Edit', edit_restaurant_path(restaurant) %></td>
+            <td><%= link_to 'Destroy', restaurant, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <% end %>
+        <% end %>
         <td><%= link_to 'Comments', comment_review_url(restaurant.id) %> </td>
       </tr>
     <% end %>
@@ -37,5 +41,5 @@
 <br>
 <% if logged? %>
 <%= link_to 'New Restaurant', new_restaurant_path %>
-<%= else %>
-<%= end %>
+<% else %>
+<% end %>

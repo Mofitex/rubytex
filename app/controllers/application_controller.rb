@@ -7,6 +7,12 @@ class ApplicationController < ActionController::Base
       redirect_to root_path
     end
   end
+  def check_admin
+    if current_user.admin!=true
+      flash[:error] = "You need to be admin to access this route"
+      redirect_to root_path
+    end
+  end
   helper_method :current_user
 
   private
