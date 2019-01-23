@@ -21,9 +21,9 @@
     <%= form.text_area :description, id: :restaurant_description %>
   </div>
 
-  <div class="field">
+  <div class="field" style="display:none;">
     <%= form.label :user_id %>
-    <%= form.text_field :user_id, id: :restaurant_user_id, :value => current_user.id, :disabled => true %>
+    <%= form.text_field :user_id, id: :restaurant_user_id, :value => current_user.id %>
   </div>
 
   <div class="field">

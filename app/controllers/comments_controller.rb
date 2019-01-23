@@ -1,6 +1,7 @@
 class CommentsController < ApplicationController
   before_action :set_comment, only: [:show, :edit, :update, :destroy]
   before_action :check_login, only: [:edit, :update, :destroy]
+  before_action :check_owner, only: [:edit, :update, :destroy]
   # GET /comments
   # GET /comments.json
   def index

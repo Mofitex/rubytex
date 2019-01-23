@@ -6,8 +6,8 @@ class CreateRestaurants < ActiveRecord::Migration[5.1]
       t.references :user, foreign_key: true
       t.references :comment, foreign_key: true
       t.string :address
-      t.numeric :telephone
-
+      t.integer :telephone
+      t.float :score
       t.timestamps
     end
   end

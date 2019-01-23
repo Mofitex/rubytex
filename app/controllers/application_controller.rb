@@ -14,7 +14,12 @@ class ApplicationController < ActionController::Base
     end
   end
   def check_owner
-  #to do
+    @user = User.find(params[:id])
+    if current_user==@user
+    else
+      flash[:error] = "You need to be admin to access this route"
+      redirect_to root_path
+    end
   end
   helper_method :current_user
 
