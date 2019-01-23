@@ -4,6 +4,7 @@ class RestaurantsController < ApplicationController
   # GET /restaurants
   # GET /restaurants.json
   def index
+    @hash = {}
     @buscar = params[:buscar]
     if @buscar==""
       @restaurants = Restaurant.all
@@ -11,6 +12,18 @@ class RestaurantsController < ApplicationController
       @restaurants = Restaurant.where("title LIKE ?", "%#{@buscar}%")
     else
       @restaurants = Restaurant.all
+      @restaurants.each do |item|
+        @number = Comment.where(restaurant: item).average(:score)
+        @hash[item.id] = @number
+      end
+      Hash[@hash.sort_by{|k, v| v}.reverse]
+      @restaurants = []
+      @hash.each_with_index do |val,index|
+        flash[:success] = "#{@hash.values[0]}, #{@hash.values[1]}, #{@hash.values[2]}"
+        @id = @hash.keys[index]
+        @restaurant = Restaurant.find(@id)
+        @restaurants.push(@restaurant)
+      end
     end
   end
 

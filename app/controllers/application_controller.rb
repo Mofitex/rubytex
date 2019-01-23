@@ -13,6 +13,9 @@ class ApplicationController < ActionController::Base
       redirect_to root_path
     end
   end
+  def check_owner
+  #to do
+  end
   helper_method :current_user
 
   private

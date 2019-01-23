@@ -28,7 +28,12 @@
 
   <div class="field">
     <%= form.label :user_id %>
-    <%= form.text_field :user_id, id: :comment_user_id %>
+    <%= form.text_field :user_id, id: :comment_user_id, :value => current_user.id, :disabled => true %>
+  </div>
+
+  <div class="field">
+    <%= form.label :restaurant_id %>
+    <%= form.text_field :restaurant_id, id: :comment_restaurant_id, :disabled => true %>
   </div>
 
   <div class="actions">
