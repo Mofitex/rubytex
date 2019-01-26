@@ -7,14 +7,9 @@ class ApplicationController < ActionController::Base
       redirect_to root_path
     end
   end
-  def check_admin
-    if current_user.admin!=true
-      flash[:error] = "You need to be admin to access this route"
-      redirect_to root_path
-    end
-  end
-  def check_owner
-    @user = User.find(params[:id])
+
+def check_owner
+    @user = User.find(params[:id] || params[:user_id])
     if current_user==@user || current_user.admin==true
     else
       flash[:error] = "You need to be admin to access this route"
@@ -23,8 +18,14 @@ class ApplicationController < ActionController::Base
   end
 
   helper_method :current_user
+  helper_method :check_admin
   private
-
+  def check_admin
+    if current_user.admin!=true
+      flash[:error] = "You need to be admin to access this route"
+      redirect_to root_path
+    end
+  end
   def current_user
   @current_user ||= User.find(session[:user_id]) if session[:user_id]
   end
