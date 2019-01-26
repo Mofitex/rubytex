@@ -15,7 +15,7 @@ ActiveRecord::Schema.define(version: 20190109173842) do
   create_table "comments", force: :cascade do |t|
     t.string "title"
     t.text "text"
-    t.integer "score"
+    t.decimal "score"
     t.integer "user_id"
     t.integer "restaurant_id"
     t.datetime "created_at", null: false
@@ -30,8 +30,7 @@ ActiveRecord::Schema.define(version: 20190109173842) do
     t.integer "user_id"
     t.integer "comment_id"
     t.string "address"
-    t.integer "telephone"
-    t.float "score"
+    t.decimal "telephone"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["comment_id"], name: "index_restaurants_on_comment_id"
