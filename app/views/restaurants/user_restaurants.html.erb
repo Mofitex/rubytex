@@ -2,7 +2,7 @@
 
 <h1><%= current_user.username%>'s Restaurants</h1>
 <form>
-<input placeholder="Buscar" id="busar" type="text" class="" name="buscar" <%= @buscar %>/>
+<input placeholder="Buscar" id="busar" type="text" class="" name="buscar" <%= @buscar %>
 </form>
 <table>
   <thead>
@@ -12,6 +12,7 @@
       <th>User</th>
       <th>Address</th>
       <th>Telephone</th>
+      <th>Average score</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -25,6 +26,7 @@
         <td><%= restaurant.user.username %></td>
         <td><%= restaurant.address %></td>
         <td><%= restaurant.telephone %></td>
+        <td><%= restaurant.score %></td>
         <td><%= link_to 'Show', restaurant %></td>
         <td><%= link_to 'Edit', edit_restaurant_path(restaurant) %></td>
         <td><%= link_to 'Destroy', restaurant, method: :delete, data: { confirm: 'Are you sure?' } %></td>

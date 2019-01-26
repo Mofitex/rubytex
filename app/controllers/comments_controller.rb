@@ -1,6 +1,7 @@
 class CommentsController < ApplicationController
   before_action :set_comment, only: [:show, :edit, :update, :destroy]
   before_action :check_login, only: [:edit, :update, :destroy]
+  before_action :check_owner, only: [:edit, :update, :destroy]
   # GET /comments
   # GET /comments.json
   def index
@@ -15,6 +16,7 @@ class CommentsController < ApplicationController
   # GET /comments/new
   def new
     @comment = Comment.new
+    @comment.restaurant = Restaurant.find(params[:restaurant])
   end
 
   # GET /comments/1/edit
@@ -76,6 +78,6 @@ class CommentsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def comment_params
-      params.require(:comment).permit(:title, :text, :score, :user_id)
+      params.require(:comment).permit(:title, :text, :score, :user_id, :restaurant_id)
     end
 end

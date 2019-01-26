@@ -26,9 +26,14 @@
     <%= form.text_field :score, id: :comment_score %>
   </div>
 
-  <div class="field">
+  <div class="field" style="display:none;">
     <%= form.label :user_id %>
-    <%= form.text_field :user_id, id: :comment_user_id %>
+    <%= form.text_field :user_id, id: :comment_user_id, :value => current_user.id %>
+  </div>
+
+  <div class="field" style="display:none;">
+    <%= form.label :restaurant_id %>
+    <%= form.text_field :restaurant_id, id: :comment_restaurant_id %>
   </div>
 
   <div class="actions">

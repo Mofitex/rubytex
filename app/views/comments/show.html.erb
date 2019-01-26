@@ -25,9 +25,10 @@
   <%= @comment.restaurant.title %>
 </p>
 <% if logged? %>
-  <% if current_user.id==@comment.user.id %>
+  <% if current_user.id==@comment.user.id || current_user.admin==true %>
     <%= link_to 'Edit', edit_comment_path(@comment) %> |
 
   <% end %>
-  <%= link_to 'Back', comments_path %>
+
 <% end %>
+<%= link_to 'Back', comments_path %>
