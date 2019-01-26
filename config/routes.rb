@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   resources :comments do
     get '/review' => 'comments#restaurant_comments'
     collection do
+      get '/new_comment/:restaurant' => 'comments#new' , as: :new_comment
       get '/owncomment' => 'comments#user_comments'
     end
   end
