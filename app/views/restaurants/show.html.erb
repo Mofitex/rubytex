@@ -1,29 +1,37 @@
 <p id="notice"><%= notice %></p>
-
+  <div class="row" style="padding-top:15px;margin-bottom:-30px">
+    <div class="col s12 m6" style="width:350px; ">
+      <div class="card blue darken-2">
+        <div class="card-content white-text">
+          <span class="card-title">Info:</span>
+          <div style="padding-top:15px">
+            <div class="">
 <p>
   <strong>Title:</strong>
   <%= @restaurant.title %>
 </p>
-
+<br>
 <p>
   <strong>Description:</strong>
   <%= @restaurant.description %>
 </p>
-
+<br>
 <p>
   <strong>User:</strong>
   <%= @restaurant.user.username %>
 </p>
-
+<br>
 <p>
   <strong>Address:</strong>
   <%= @restaurant.address %>
 </p>
-
+<br>
 <p>
   <strong>Telephone:</strong>
   <%= @restaurant.telephone %>
 </p>
+<br>
+<div class="">
 <% if logged? %>
   <%= link_to 'New Comment', new_comment_comments_path(@restaurant.id) %> |
   <% if current_user.id==@restaurant.user.id || current_user.admin==true %>
@@ -31,3 +39,11 @@
   <% end %>
 <% end %>
   <%= link_to 'Back', restaurants_path %>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+</div>
+</div>

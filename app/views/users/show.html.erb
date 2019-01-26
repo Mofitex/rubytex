@@ -1,24 +1,39 @@
 <p id="notice"><%= notice %></p>
-
+<div class="row" style="padding-top:15px;margin-bottom:-30px">
+  <div class="col s12 m6" style="width:350px; ">
+    <div class="card blue darken-2">
+      <div class="card-content white-text">
+        <span class="card-title">Info:</span>
+        <div style="padding-top:15px">
+          <div class="">
 <p>
   <strong>Email:</strong>
   <%= @user.email %>
 </p>
-
+<br>
 <p>
   <strong>Password:</strong>
   <%= @user.password %>
 </p>
-
+<br>
 <p>
   <strong>Username:</strong>
   <%= @user.username %>
 </p>
-
+<br>
 <p>
   <strong>Admin:</strong>
   <%= @user.admin %>
 </p>
-
+<br>
+<div class="">
 <%= link_to 'Edit', edit_user_path(@user) %> |
 <%= link_to 'Back', root_path %>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+</div>
+</div>

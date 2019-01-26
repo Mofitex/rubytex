@@ -1,34 +1,50 @@
 <p id="notice"><%= notice %></p>
+  <div class="row" style="padding-top:15px;margin-bottom:-30px">
+    <div class="col s12 m6" style="width:350px; ">
+      <div class="card blue darken-2">
+        <div class="card-content white-text">
+          <span class="card-title">Info:</span>
+          <div style="padding-top:15px">
+            <div class="">
+            <p>
+              <strong>Title:</strong>
+              <%= @comment.title %>
+            </p>
+            <br>
+            <p>
+              <strong>Text:</strong>
+              <%= @comment.text %>
+            </p>
+            <br>
+            <p>
+              <strong>Score:</strong>
+              <%= @comment.score %>
+            </p>
+            <br>
+            <p>
+              <strong>User:</strong>
+              <%= @comment.user.username %>
+            </p>
+            <br>
+            <p>
+              <strong>Restaurant:</strong>
+              <%= @comment.restaurant.title %>
+            </p>
+            </div>
+            <br>
+            <div class="">
+              <% if logged? %>
+                <% if current_user.id==@comment.user.id || current_user.admin==true %>
+                  <%= link_to 'Edit', edit_comment_path(@comment) %> |
 
-<p>
-  <strong>Title:</strong>
-  <%= @comment.title %>
-</p>
+                <% end %>
 
-<p>
-  <strong>Text:</strong>
-  <%= @comment.text %>
-</p>
+              <% end %>
+              <%= link_to 'Back', comments_path %>
+            </div>
+          </div>
+        </div>
 
-<p>
-  <strong>Score:</strong>
-  <%= @comment.score %>
-</p>
-
-<p>
-  <strong>User:</strong>
-  <%= @comment.user.username %>
-</p>
-
-<p>
-  <strong>Restaurant:</strong>
-  <%= @comment.restaurant.title %>
-</p>
-<% if logged? %>
-  <% if current_user.id==@comment.user.id || current_user.admin==true %>
-    <%= link_to 'Edit', edit_comment_path(@comment) %> |
-
-  <% end %>
-
-<% end %>
-<%= link_to 'Back', comments_path %>
+      </div>
+    </div>
+  </div>
