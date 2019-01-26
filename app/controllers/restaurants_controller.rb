@@ -1,52 +1,16 @@
 class RestaurantsController < ApplicationController
   before_action :set_restaurant, only: [:show, :edit, :update, :destroy]
   before_action :check_login, only: [:new, :edit, :update, :destroy, :user_restaurants]
-  before_action :check_owner, only: [:edit, :update, :destroy]
   # GET /restaurants
   # GET /restaurants.json
   def index
-    h = {}
     @buscar = params[:buscar]
     if @buscar==""
       @restaurants = Restaurant.all
-      @restaurants.each do |item|
-        @number = Comment.where(restaurant: item).average(:score)
-        h[item.id] = @number.floor
-      end
-      @hash = h.sort_by {|_key, value| value}.reverse
-      @restaurants = []
-      @hash.each do |val|
-        @id = val[0]
-        @restaurant = Restaurant.find(@id)
-        @restaurants.push(@restaurant)
-      end
     elsif @buscar
       @restaurants = Restaurant.where("title LIKE ?", "%#{@buscar}%")
-      @restaurants.each do |item|
-        @number = Comment.where(restaurant: item).average(:score)
-        h[item.id] = @number.floor
-      end
-      @hash = h.sort_by {|_key, value| value}.reverse
-      @restaurants = []
-      @hash.each do |val|
-        @id = val[0]
-        @restaurant = Restaurant.find(@id)
-        @restaurants.push(@restaurant)
-      end
     else
       @restaurants = Restaurant.all
-      @restaurants.each do |item|
-        @number = Comment.where(restaurant: item).average(:score)
-        h[item.id] = @number.floor
-      end
-      @hash = h.sort_by {|_key, value| value}.reverse
-      @restaurants = []
-      @hash.each do |val|
-        @id = val[0]
-        @restaurant = Restaurant.find(@id)
-        @restaurant.score = val[1]
-        @restaurants.push(@restaurant)
-      end
     end
   end
 

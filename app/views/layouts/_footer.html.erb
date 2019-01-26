@@ -1,14 +1,18 @@
 <br>
 <br>
-<footer>
-  <%= link_to 'All Comments', comments_path %>  |
-  <%= link_to 'All Restaurants', restaurants_path %>
+
+
+
+<footer class=" white" style=" box-shadow:none">
+    <p style="font-size:10px;" class="waves-effect waves-light btn white white-text"><%= link_to 'All Comments', comments_path %></p>
+    <p style="margin-left:20px; font-size:10px;" class="waves-effect waves-light btn white white-text"><%= link_to 'All Restaurants', restaurants_path %></p>
+
   <% if logged? %>
- | <%= link_to 'Your Restaurants', owner_restaurants_path %> |
-   <%= link_to 'Your Comments', owncomment_comments_path %>
+ <p style="margin-left:20px; font-size:10px;" class="waves-effect waves-light btn white white-text"><%= link_to 'Your Restaurants', owner_restaurants_path %></p>
+   <p style="margin-left:20px; font-size:10px;" class="waves-effect waves-light btn white white-text"><%= link_to 'Your Comments', owncomment_comments_path %></p><br>
    <% if current_user.admin==true %>
-      <p><b>Sudo on</b></p>
-      <%= link_to 'Users list', users_path %>
+      <p style=" font-size:10px;" class="waves-effect waves-light btn"><b>Sudo on</b></p><br>
+      <p style=" font-size:10px;" class="waves-effect waves-light btn white white-text"><%= link_to 'Users list', users_path %></p>
    <% end %>
   <% end %>
 

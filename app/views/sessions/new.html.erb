@@ -1,23 +1,32 @@
-<h1>Login:</h1>
+
 
 <%= form_for(:sessions, url: session_create_path) do |f| %>
+<div>
+  <div class="row" style="padding-top:15px;margin-bottom:-30px; font-family:verdana,arial,helvetica,sans-serif">
+    <div class="col s12 m6" style="width:350px;">
+      <div class="card blue-grey darken-1">
+        <div class="card-content white-text">
+          <span class="card-title">Login</span>
+          <div style="padding-top:15px">
+            <%= f.label :email %>
+            <%= f.email_field :email, autofocus: true %>
+          </div>
+          <div>
+            <%= f.label :password %>
+            <%= f.email_field :password, autofocus: true, type:"password"%>
+          </div>
+          <div class="center">
+            <button type="submit" class="waves-effect waves-light btn" style="width:100px; margin-top:10px; margin-bottom:10px"><%= f.submit "log in" %></button>
 
+          </div>
+          <div class="left">
+            <%= link_to 'Back', root_path, {:class => "white-text"} %>
+          </div>
+          </div>
 
-
-  <div>
-    <%= f.label :email %>
-    <%= f.email_field :email, placeholder: "Enter email", autofocus: true %>
+      </div>
+    </div>
   </div>
-  <div>
-    <%= f.label :password %>
-    <%= f.email_field :password, placeholder: "Enter  pass", autofocus: true, type:"password"%>
-  </div>
-  <div>
-    <%= f.submit "log in" %>
-  </div>
-
 
 
 <% end %>
-
-  <%= link_to 'Back', root_path %>

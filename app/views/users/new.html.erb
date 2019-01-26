@@ -1,6 +1,17 @@
 
-<h1 >Register:</h1>
+  <div class="row" style="padding-top:15px;margin-bottom:-30px">
+    <div class="col s12 m6" style="width:350px; ">
+      <div class="card blue-grey darken-1">
+        <div class="card-content white-text">
+          <span class="card-title">Register</span>
+          <div style="padding-top:15px">
+            <%= render 'form', user: @user %>
+            <div class="left">
+              <%= link_to 'Back', users_path, {:class => "white-text"} %>
+            </div>
+          </div>
+        </div>
 
-<%= render 'form', user: @user %>
-
-<%= link_to 'Back', users_path %>
+      </div>
+    </div>
+  </div>

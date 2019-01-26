@@ -2,7 +2,7 @@
 
 <h1>Restaurants</h1>
 <form>
-<input name="buscar" <%= @buscar %>/><button type="submit">buscar</button>
+  <input placeholder="Buscar" id="busar" type="text" class="" name="buscar" <%= @buscar %>/>
 </form>
 <table>
   <thead>
@@ -12,8 +12,7 @@
       <th>User</th>
       <th>Address</th>
       <th>Telephone</th>
-      <th>Average score</th>
-      <th colspan="4"></th>
+      <th colspan="3"></th>
     </tr>
   </thead>
 
@@ -26,18 +25,14 @@
         <td><%= restaurant.user.username %></td>
         <td><%= restaurant.address %></td>
         <td><%= restaurant.telephone %></td>
-        <td><%= restaurant.score %></td>
         <td><%= link_to 'Show', restaurant %></td>
-        <td><%= link_to 'Comments', comment_review_url(restaurant.id) %> </td>
         <% if logged? %>
           <% if current_user.admin==true %>
             <td><%= link_to 'Edit', edit_restaurant_path(restaurant) %></td>
             <td><%= link_to 'Destroy', restaurant, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-            <% elsif current_user.id==restaurant.user.id %>
-            <td><%= link_to 'Edit', edit_restaurant_path(restaurant) %></td>
-            <td><%= link_to 'Destroy', restaurant, method: :delete, data: { confirm: 'Are you sure?' } %></td>
           <% end %>
         <% end %>
+        <td><%= link_to 'Comments', comment_review_url(restaurant.id) %> </td>
       </tr>
     <% end %>
   </tbody>

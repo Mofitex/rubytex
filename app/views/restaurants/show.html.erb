@@ -25,7 +25,7 @@
   <%= @restaurant.telephone %>
 </p>
 <% if logged? %>
-  <%= link_to 'New Comment', new_comment_comments_path(@restaurant.id) %> |
+  <%= link_to 'New Comment', new_comment_path %> |
   <% if current_user.id==@restaurant.user.id %>
       <%= link_to 'Edit', edit_restaurant_path(@restaurant) %> |
   <% end %>
