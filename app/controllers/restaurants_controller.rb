@@ -84,7 +84,11 @@ class RestaurantsController < ApplicationController
       h = {}
       @restaurants.each do |item|
         @number = Comment.where(restaurant: item).average(:score)
-        h[item.id] = @number.floor
+        if @number
+          h[item.id] = @number.floor
+        else
+          h[item.id] = 0
+        end
       end
       @hash = h.sort_by {|_key, value| value}.reverse
       @restaurants = []
